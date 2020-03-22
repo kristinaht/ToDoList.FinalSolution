@@ -14,18 +14,20 @@ namespace ToDoList
     {
       var builder = new ConfigurationBuilder()
           .SetBasePath(env.ContentRootPath)
-          .AddJsonFile("appsettings.json");
+          .AddJsonFile("appsettings.json"); //we are telling our app what to do with connection string in .json file
       Configuration = builder.Build();
     }
 
     public IConfigurationRoot Configuration { get; set; }
+    //set; allows us to set our app's connection string
 
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
 
-      services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+      //Entity configuration code:
+      services.AddEntityFrameworkMySql() 
+        .AddDbContext<ToDoListContext>(options => options //AddDbContext is representation of our database. every time we want to reference a db in an app, we will do that by using an instance of this DbContext class.
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 

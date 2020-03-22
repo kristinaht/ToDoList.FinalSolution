@@ -1,19 +1,21 @@
 @{
   Layout = "_Layout";
 }
-
+@* model directive tells our view what type of data will be passed into the view from the controller route.
+our view will receive a model that is an Item.
+we must include both the namespace AND the class *@
 @model ToDoList.Models.Item
 
-<h4>Add a new task</h4>
-
-@using (Html.BeginForm())
+<h3>Add a new task</h3>
+@using (Html.BeginForm()) //this sends a post request to current url (Create() route in this case)
 {
-    @Html.LabelFor(model => model.Description)
-    @Html.TextBoxFor(model => model.Description)
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
 
-    @Html.LabelFor(model => model.Category)
-    @Html.DropDownList("CategoryId")
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId") //this corresponds to the SelectList() method in Create action in ItemsController
 
-    <input type="submit" value="Add new item" class="btn btn-default" />
+  <input type ="submit" value="Add new task" />
 }
+
 <p>@Html.ActionLink("Show all items", "Index")</p>

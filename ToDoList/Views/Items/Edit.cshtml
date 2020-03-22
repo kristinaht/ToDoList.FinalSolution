@@ -8,17 +8,18 @@
 
 <h4>Edit this task: @Html.DisplayFor(model => model.Description)</h4>
 
-@using (Html.BeginForm())
+@using(Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.ItemId)
+  @Html.HiddenFor(model => model.ItemId) @*HiddenFor with ItemId is used because we need to tell the controller which item to update*@
 
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)
+  @Html.LabelFor(model =>model.Description)
+  @Html.EditorFor(model => model.Description)
 
-    @Html.LabelFor(model => model.Category)
-    @Html.DropDownList("CategoryId")
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId") @*DropDownList helper method takes the Category info passed down from Viewbag*@
 
-    <input type="submit" value="Save" />
+  <input type="submit" value="save" />
 }
+
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
